@@ -15,18 +15,8 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-
 	
-	
-	<!--<build>
-		<extensions>
-			<extension>
-				<groupId>org.springframework.build</groupId>
-				<artifactId>aws-maven</artifactId>
-				<version>5.0.0.RELEASE</version>
-			</extension>
-		</extensions>
-	</build>-->
+	<!-- define "deploy" process to store artifact to s3 -->
 	<build>
         <extensions>
             <extension>
@@ -36,20 +26,35 @@
             </extension>
         </extensions>
     </build>
+    <!-- /define "deploy" process to store artifact to s3 -->
 
-
-
+	<!-- s3 private repositories distribuition definition -->
 	<distributionManagement>
 		<snapshotRepository>
-			<id>enginius-mvn-repo</id>
-			<url>s3://enginius-mvn-repo/snapshot</url>
+			<id>my-mvn-repo.snapshot</id>
+			<url>s3://my-mvn-repo/snapshot</url>
 		</snapshotRepository>
 		<repository>
-			<id>enginius-mvn-repo</id>
-			<url>s3://enginius-mvn-repo/release</url>
+			<id>my-mvn-repo.release</id>
+			<url>s3://my-mvn-repo/release</url>
 		</repository>
+		<!-- add on ~/.m2/settings.xml repo's AWS credentials, like:
+			<settings>
+				<servers>
+					<server>
+						<id>my-mvn-repo.snapshot</id>
+						<username>ACCESS_KEY</username>
+						<password>SECRET_KEY</password>
+					</server>
+					<server>
+						<id>my-mvn-repo.release</id>
+						<username>ACCESS_KEY</username>
+						<password>SECRET_KEY</password>
+					</server>
+				</servers>
+			</settings>
+		-->
 	</distributionManagement>
-
-
+	<!-- /s3 private repositories distribuition definition-->
 
 </project>

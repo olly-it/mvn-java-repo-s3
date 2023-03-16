@@ -17,37 +17,43 @@
 		<java.version>17</java.version>
 	</properties>
 
-
-
+	<!-- s3 private repositories definition -->
 	<repositories>
 		<repository>
-			<id>enginius-mvn-repo.snapshot</id>
-			<url>s3://enginius-mvn-repo/snapshot</url>
+			<id>my-mvn-repo.snapshot</id>
+			<url>s3://my-mvn-repo/snapshot</url>
 		</repository>
 		<repository>
-			<id>enginius-mvn-repo.release</id>
-			<url>s3://enginius-mvn-repo/release</url>
+			<id>my-mvn-repo.release</id>
+			<url>s3://my-mvn-repo/release</url>
 		</repository>
+		<!-- add on ~/.m2/settings.xml repo's AWS credentials, like:
+			<settings>
+				<servers>
+					<server>
+						<id>my-mvn-repo.snapshot</id>
+						<username>ACCESS_KEY</username>
+						<password>SECRET_KEY</password>
+					</server>
+					<server>
+						<id>my-mvn-repo.release</id>
+						<username>ACCESS_KEY</username>
+						<password>SECRET_KEY</password>
+					</server>
+				</servers>
+			</settings>
+		-->
 	</repositories>
-
-
-
+	<!-- /s3 private repositories definition-->
 
 	<dependencies>
-	
-	
-
+		<!-- library stored on s3 private repo -->
 		<dependency>
 			<groupId>olly-it</groupId>
 			<artifactId>mvn-java-library</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
-		
-		
-		
-		
-		
+		<!-- library stored on s3 private repo -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,19 +74,8 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-
-
-
-
-
-
-		<!--<extensions>
-			<extension>
-				<groupId>org.springframework.build</groupId>
-				<artifactId>aws-maven</artifactId>
-				<version>5.0.0.RELEASE</version>
-			</extension>
-		</extensions>-->
+		
+		<!-- wagon extension to use a private s3 maven repo -->
         <extensions>
             <extension>
                 <groupId>com.github.seahen</groupId>
@@ -88,10 +83,7 @@
                 <version>1.3.3</version>
             </extension>
         </extensions>
-
-
-
-
+        <!-- /wagon extension to use a private s3 maven repo -->
 	</build>
 
 </project>
