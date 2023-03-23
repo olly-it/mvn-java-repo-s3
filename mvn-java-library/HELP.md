@@ -27,7 +27,7 @@ These credentials must match with s3's bucket policies (r/w/...)
 ## pom.xml
 On pom.xml add:
 
-    	<build>
+    <build>
         <extensions>
             <extension>
                 <groupId>com.github.seahen</groupId>
@@ -37,7 +37,7 @@ On pom.xml add:
         </extensions>
     </build>
     ...
-    	<distributionManagement>
+    <distributionManagement>
 		<snapshotRepository>
 			<id>my-mvn-repo.snapshot</id>
 			<url>s3://my-mvn-repo/snapshot</url>
